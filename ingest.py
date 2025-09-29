@@ -1,5 +1,3 @@
-# Arquivo: ingest.py (Versão Google)
-
 import os
 from dotenv import load_dotenv
 from langchain_community.document_loaders import PyPDFLoader

@@ -1,5 +1,3 @@
-# Arquivo: main.py
-
 import streamlit as st
 import traceback
 from rag_pipeline import get_rag_chain

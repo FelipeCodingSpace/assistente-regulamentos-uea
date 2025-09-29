@@ -1,5 +1,3 @@
-# Arquivo: rag_pipeline.py (VERSÃO FINAL E CORRIGIDA)
-
 import os
 from dotenv import load_dotenv
 from langchain_chroma import Chroma
@@ -10,7 +8,6 @@ from langchain.chains import RetrievalQA
 load_dotenv()
 
 DB_PATH = "vector_db"
-# MUDANÇA: Usando o modelo 'gemini-pro' para máxima estabilidade e compatibilidade.
 MODEL_NAME = "models/gemini-2.5-flash-lite" 
 EMBEDDING_MODEL_NAME = "models/embedding-001"
 

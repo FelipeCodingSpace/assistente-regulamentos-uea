@@ -33,7 +33,7 @@ Este projeto implementa um assistente de chat que utiliza IA Generativa e a téc
 ### 1. Clone o Repositório
 
 ```bash
-git clone <URL_DO_SEU_REPOSITORIO>
+git clone https://github.com/FelipeCodingSpace/assistente-regulamentos-uea.git
 cd assistente-regulamentos-uea
 ```
 
@@ -46,8 +46,9 @@ pip install -r requirements.txt
 ### 3. Configure sua Chave de API do Hugging Face
 
 1.  Vá para [Google AI Studio](https://aistudio.google.com/app/api-keys) e gere uma nova chave de API.
-2.  Na pasta raiz do projeto, crie um arquivo chamado .env
-3.  Dentro do arquivo .env, adicione a seguinte linha, substituindo SUA_CHAVE_AQUI pela chave que você copiou:
+2.  É necessário antes ativar a opção de faturamento do projeto relacionado a sua chave de API.
+3.  Na pasta raiz do projeto, crie um arquivo chamado .env
+4.  Dentro do arquivo .env, adicione a seguinte linha, substituindo SUA_CHAVE_AQUI pela chave que você copiou:
 
 ```.env
 GOOGLE_API_KEY="SUA_CHAVE_AQUI"
