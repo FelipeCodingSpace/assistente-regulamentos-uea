@@ -1,0 +1,6 @@
+Canário executado com sucesso em: 2025-11-23 22:34:48.794063
+Usando o Python: C:\dev\projetos\RAG\myenv\Scripts\python.exe
+---
+Canário executado com sucesso em: 2025-11-23 22:34:51.257360
+Usando o Python: C:\dev\projetos\RAG\myenv\Scripts\python.exe
+---

@@ -1,13 +1,16 @@
+# main.py
+
 import streamlit as st
 import traceback
-from rag_pipeline import get_rag_chain
+from workflow_agents import executar_workflow
 
 st.set_page_config(page_title="Assistente de Regulamentos UEA", layout="wide")
+
 st.title("💬 Assistente Virtual de Regulamentos Acadêmicos da UEA")
-st.caption("Faça perguntas sobre os regulamentos da universidade e receba respostas baseadas nos documentos oficiais (usando a API do Google Gemini).")
+st.caption("Faça perguntas gerais ou específicas (ex: 'o que diz o artigo 10?') sobre os regulamentos.")
 
 if "messages" not in st.session_state:
-    st.session_state.messages = []
+    st.session_state.messages = [{"role": "assistant", "content": "Olá! Como posso ajudar com os regulamentos hoje?"}]
 
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
@@ -19,18 +22,13 @@ if prompt := st.chat_input("Quais são os critérios para trancamento de matríc
         st.markdown(prompt)
 
     with st.chat_message("assistant"):
-        with st.spinner("Analisando os documentos e gerando a resposta..."):
+        with st.spinner("Analisando os documentos e preparando sua resposta..."):
             try:
-                rag_chain = get_rag_chain()
-                result_dict = rag_chain.invoke(prompt)
-                response = result_dict["result"]
+                response = executar_workflow(prompt)
                 st.markdown(response)
             except Exception as e:
                 st.error("Ocorreu um erro ao processar sua solicitação.")
-                print("="*50)
-                print("ERRO DETALHADO NO STREAMLIT:")
                 traceback.print_exc()
-                print("="*50)
-                response = "Desculpe, não consegui processar sua pergunta. Verifique o console para mais detalhes."
+                response = "Desculpe, não consegui processar sua pergunta."
 
     st.session_state.messages.append({"role": "assistant", "content": response})

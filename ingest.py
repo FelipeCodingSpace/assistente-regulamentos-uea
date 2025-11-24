@@ -11,7 +11,7 @@ if os.getenv("GOOGLE_API_KEY") is None:
     print("ERRO: A variável de ambiente GOOGLE_API_KEY não foi encontrada.")
     exit()
 
-DATA_PATH = "Dataset/"
+DATA_PATH = "Documentos/"
 DB_PATH = "vector_db"
 
 def main():

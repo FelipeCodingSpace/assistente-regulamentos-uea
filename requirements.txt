@@ -1,3 +1,4 @@
+fastmcp
 streamlit
 pypdf
 python-dotenv
