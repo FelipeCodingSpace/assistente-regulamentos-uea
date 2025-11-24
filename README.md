@@ -35,6 +35,7 @@ Um agente roteador inteligente analisa a pergunta do usuário e decide qual a me
 |-- workflow_agents.py   # O coração do projeto, onde todos os agentes são definidos
 |-- requirements.txt     # Dependências do projeto
 |-- README.md            # Este arquivo
+```
 
 ## Pré-requisitos
 
