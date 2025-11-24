@@ -15,7 +15,7 @@ Este projeto implementa um assistente de chat que utiliza IA Generativa e a téc
 |
 |-- /Dataset/            # Dataset com PDFs dos regulamentos aqui
 |-- /vector_db/          # Base de dados vetorial (criada automaticamente)
-|-- .env                 # Arquivo para a chave de API (NÃO ENVIE PARA O GIT)
+|-- .env                 # Arquivo para a chave de API do GEMINI
 |-- ingest.py            # Script para processar e indexar os PDFs
 |-- rag_pipeline.py      # Lógica principal do RAG com a API do Google
 |-- main.py              # Interface web com Streamlit (ou main.py)
