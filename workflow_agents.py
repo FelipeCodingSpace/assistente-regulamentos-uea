@@ -1,4 +1,3 @@
-
 import os
 from langchain_google_vertexai import ChatVertexAI
 from rag_pipeline import get_rag_chain
