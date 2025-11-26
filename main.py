@@ -1,8 +1,11 @@
-# main.py
-
 import streamlit as st
+from dotenv import load_dotenv
 import traceback
 from workflow_agents import executar_workflow
+
+if "env" not in st.session_state:
+    load_dotenv()
+    st.session_state.env = True
 
 st.set_page_config(page_title="Assistente de Regulamentos UEA", layout="wide")
 

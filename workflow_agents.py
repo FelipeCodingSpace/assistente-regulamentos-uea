@@ -1,20 +1,30 @@
 
 import os
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_google_vertexai import ChatVertexAI
 from rag_pipeline import get_rag_chain
-import re
 from mcp_tools.client_tools import mcp_list_pdfs, mcp_get_table_of_contents
+
+PROJECT_ID = "gen-lang-client-0516972642" # ID do projeto
+LOCATION = "us-central1" # Região
 
 class AgenteBase:
     """
     Agente base que implementa a função de pensar que é utilizada por todos os agentes.
     """
-    def __init__(self, nome: str, model: str = "models/gemini-2.5-flash-lite", temperatura: float = 0.1):
-        self.nome = nome; self.model = model; self.temperatura = temperatura
+    def __init__(self, nome: str, temperatura: float = 0.1):
+        self.nome = nome
+        self.model = "projects/561885827365/locations/us-central1/endpoints/4371120570851393536"
+        self.temperatura = temperatura
+        self.llm = ChatVertexAI(
+            model_name=self.model,
+            temperature=self.temperatura,
+            project=PROJECT_ID,
+            location=LOCATION,
+            convert_system_message_to_human=False 
+        )
 
     def pensar(self, instrucoes: str, entrada: str) -> str:
-        llm = ChatGoogleGenerativeAI(model=self.model, temperature=self.temperatura, convert_system_message_to_human=True)
-        return llm.invoke(f"{instrucoes}\n\nEntrada:\n{entrada}").content.strip()
+        return self.llm.invoke(f"{instrucoes}\n\nEntrada:\n{entrada}").content.strip()
 
 class AnalyzerAgent(AgenteBase):
     """
