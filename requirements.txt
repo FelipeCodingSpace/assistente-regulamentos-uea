@@ -5,5 +5,7 @@ python-dotenv
 langchain-chroma
 chromadb
 langchain
+langchain-core
 langchain-community
 langchain-google-vertexai
+langchain-google-genai
