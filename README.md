@@ -1,24 +1,38 @@
-# Assistente de Regulamentos Acadêmicos da UEA com IA Generativa (RAG)
+# Assistente Híbrido com Agentes Inteligentes (RAG + Ferramentas MCP)
 
-Este projeto implementa um assistente de chat que utiliza IA Generativa e a técnica de RAG (Retrieval-Augmented Generation) para responder perguntas sobre os regulamentos acadêmicos da Universidade do Estado do Amazonas (UEA), baseando-se em documentos oficiais em formato PDF.
+Este projeto implementa um assistente de chat avançado que utiliza um sistema de múltiplos agentes de IA para responder perguntas sobre os regulamentos acadêmicos da Universidade do Estado do Amazonas (UEA).
 
-## Funcionalidades
+O sistema combina duas abordagens de IA Generativa:
+1.  **RAG (Retrieval-Augmented Generation):** Para responder a perguntas abertas e gerais, buscando informações em uma base de conhecimento vetorial.
+2.  **Ferramentas Especializadas (MCP):** Para executar tarefas específicas e precisas, como extrair a estrutura (sumário) de um documento.
 
--   **Consulta em Linguagem Natural:** Faça perguntas como se estivesse conversando com uma pessoa.
--   **Respostas Baseadas em Fontes:** As respostas são geradas com base no conteúdo dos documentos fornecidos.
--   **Interface Web Simples:** Interface amigável criada com Streamlit.
+Um agente roteador inteligente analisa a pergunta do usuário e decide qual a melhor abordagem a ser utilizada, orquestrando um workflow de agentes especializados para construir a melhor resposta possível.
+
+## Funcionalidades Principais
+
+-   **Roteamento Inteligente:** Um `RouterAgent` decide automaticamente se a pergunta deve ser respondida com busca semântica (RAG) ou com uma ferramenta específica (MCP).
+-   **Busca Semântica (RAG):** Responde a perguntas gerais (ex: `"Quais os critérios para trancamento?"`) com base no conteúdo dos PDFs.
+-   **Ferramentas Especializadas (MCP):** Executa tarefas diretas, como a extração do sumário de um documento para entender sua estrutura.
+-   **Seleção Inteligente de Documentos:** Um `DocumentSelectorAgent` escolhe o PDF mais relevante para a pergunta quando a rota MCP é acionada, caso existam múltiplos documentos.
+-   **Workflow de Múltiplos Agentes:** As respostas são processadas em etapas por agentes especializados em análise e geração de texto, garantindo respostas mais coerentes e bem formatadas.
+-   **Interface Web Simples:** Uma interface de chat amigável construída com Streamlit.
 
 ## Estrutura do Projeto
 
 ```
 /assistente-regulamentos-uea/
 |
-|-- /Dataset/            # Dataset com PDFs dos regulamentos aqui
-|-- /vector_db/          # Base de dados vetorial (criada automaticamente)
-|-- .env                 # Arquivo para a chave de API (NÃO ENVIE PARA O GIT)
-|-- ingest.py            # Script para processar e indexar os PDFs
-|-- rag_pipeline.py      # Lógica principal do RAG com a API do Google
-|-- main.py              # Interface web com Streamlit (ou main.py)
+|-- /Documentos/         # Coloque os PDFs dos regulamentos aqui
+|-- /mcp_tools/          # Ferramentas do Multi-Tool Cooperative Protocol (MCP)
+|   |-- client_tools.py  # Cliente para chamar as ferramentas do MCP
+|   |-- pdf_server.py    # Servidor que define as ferramentas (ex: extrair sumário)
+|
+|-- /vector_db/          # Base de dados vetorial (criada automaticamente ao executar ingest.py)
+|-- .env                 # Arquivo com chave de api do google para acessar o gemini
+|-- ingest.py            # Script para processar e indexar os PDFs para o RAG
+|-- main.py              # Interface web com Streamlit
+|-- rag_pipeline.py      # Lógica da cadeia RAG com a API do Google
+|-- workflow_agents.py   # O coração do projeto, onde todos os agentes são definidos
 |-- requirements.txt     # Dependências do projeto
 |-- README.md            # Este arquivo
 ```
